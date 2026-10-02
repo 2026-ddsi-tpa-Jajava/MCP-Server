@@ -1,6 +1,7 @@
 package ar.edu.utn.dds.k3003;
 
 import ar.edu.utn.dds.k3003.tools.IncentivosTools;
+import ar.edu.utn.dds.k3003.tools.LogisticaTools;
 import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.method.MethodToolCallbackProvider;
 import org.springframework.boot.SpringApplication;
@@ -16,9 +17,9 @@ public class McpApplication {
 
 
     @Bean
-    public ToolCallbackProvider mcpTools(IncentivosTools incentivosTools) {
+    public ToolCallbackProvider mcpTools(IncentivosTools incentivosTools, LogisticaTools logisticaTools) {
         return MethodToolCallbackProvider.builder()
-                .toolObjects(incentivosTools)
+                .toolObjects(incentivosTools, logisticaTools)
                 // hay que agregar para cada modulo esto muchachos: .toolObjects(logisticaTools, donadoresTools)
                 .build();
     }
