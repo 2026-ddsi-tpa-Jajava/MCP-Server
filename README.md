@@ -69,3 +69,4 @@ Servidor MCP (Spring AI) de Donatrack. Expone por SSE (`/mcp/sse`) las tools que
 | `logistica_consultar_asignaciones_estado` | Obtiene las asignaciones por estado (ASIGNADA o COMPLETADA). |
 | `logistica_consultar_asignacion_paquete` | Obtiene una asignación a partir del ID del paquete. |
 | `logistica_configurar_algoritmo` | Configura el algoritmo de matchmaking de un depósito (SUB_ATENDIDOS o PRIORIDAD_POR_SCORE). |
+| `logistica_reportar_entrega` | Cambia el estado de la asignacion a COMPLETADA. |
