@@ -59,4 +59,34 @@ public class DonacionesTools {
             @ToolParam(description = "ID de la categoría padre", required = true) String categoriaId) {
         return donacionesClient.verSubcategorias(categoriaId);
     }
+
+    @Tool(name = "donaciones_crear_categoria", description = "Crea una nueva categoría principal en el catálogo.")
+    public String crearCategoria(
+            @ToolParam(description = "Nombre de la categoría", required = true) String nombre,
+            @ToolParam(description = "Descripción opcional") String descripcion) {
+        return donacionesClient.agregarCategoria(nombre, descripcion);
+    }
+
+    @Tool(name = "donaciones_crear_subcategoria", description = "Crea una nueva subcategoría dentro de una categoría existente.")
+    public String crearSubcategoria(
+            @ToolParam(description = "ID numérico de la categoría padre", required = true) String categoriaId,
+            @ToolParam(description = "Nombre de la subcategoría", required = true) String nombre) {
+        return donacionesClient.agregarSubcategoria(categoriaId, nombre);
+    }
+
+    @Tool(name = "donaciones_crear_identificador", description = "Crea un identificador para un producto. IMPORTANTE: Si es QR, el nombre del producto futuro debe tener cantidad par de letras. Si es CODIGODEBARRAS, la descripción debe tener 3 o más palabras.")
+    public String crearIdentificador(
+            @ToolParam(description = "Debe ser estrictamente 'QR' o 'CODIGODEBARRAS'", required = true) String tipo,
+            @ToolParam(description = "Descripción del identificador", required = true) String descripcion) {
+        return donacionesClient.agregarIdentificador(tipo, descripcion);
+    }
+
+    @Tool(name = "donaciones_crear_producto", description = "Crea un nuevo producto en el catálogo vinculando una subcategoría y un identificador existentes.")
+    public String crearProducto(
+            @ToolParam(description = "Nombre del producto", required = true) String nombre,
+            @ToolParam(description = "Descripción del producto", required = true) String descripcion,
+            @ToolParam(description = "ID de la subcategoría previamente creada", required = true) String subcategoriaId,
+            @ToolParam(description = "ID del identificador previamente creado", required = true) String identificadorId) {
+        return donacionesClient.agregarProducto(nombre, descripcion, subcategoriaId, identificadorId);
+    }
 }

@@ -63,4 +63,50 @@ public class DonacionesClient {
         return restClient.get().uri("/categorias/{id}/subcategorias", categoriaId)
                 .retrieve().body(String.class);
     }
+
+    public String agregarCategoria(String nombre, String descripcion) {
+        Map<String, String> body = Map.of(
+                "nombre", nombre,
+                "descripcion", descripcion != null ? descripcion : ""
+        );
+        return restClient.post().uri("/categorias")
+                .body(body)
+                .retrieve()
+                .body(String.class);
+    }
+
+    public String agregarSubcategoria(String categoriaId, String nombre) {
+        Map<String, String> body = Map.of(
+                "nombre", nombre,
+                "categoriaID", categoriaId
+        );
+        return restClient.post().uri("/categorias/{id}/subcategorias", categoriaId)
+                .body(body)
+                .retrieve()
+                .body(String.class);
+    }
+
+    public String agregarIdentificador(String tipo, String descripcion) {
+        Map<String, String> body = Map.of(
+                "tipo", tipo,
+                "descripcion", descripcion
+        );
+        return restClient.post().uri("/identificadores")
+                .body(body)
+                .retrieve()
+                .body(String.class);
+    }
+
+    public String agregarProducto(String nombre, String descripcion, String subcategoriaId, String identificadorId) {
+        Map<String, String> body = Map.of(
+                "nombre", nombre,
+                "descripcion", descripcion != null ? descripcion : "",
+                "subcategoriaID", subcategoriaId,
+                "identificadorID", identificadorId
+        );
+        return restClient.post().uri("/productos")
+                .body(body)
+                .retrieve()
+                .body(String.class);
+    }
 }
