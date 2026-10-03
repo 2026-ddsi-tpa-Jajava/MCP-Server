@@ -32,42 +32,42 @@ public class DonadoresTools {
         return client.listarDonadores();
     }
 
-    @Tool(name = "donadores_consultar_donador", description = "Obtiene un donador por su ID.")
-    public String consultarDonador(@ToolParam(description = "ID del donador", required = true) String id) {
-        return client.consultarDonador(id);
-    }
+    // @Tool(name = "donadores_consultar_donador", description = "Obtiene un donador por su ID.")
+    // public String consultarDonador(@ToolParam(description = "ID del donador", required = true) String id) {
+    // return client.consultarDonador(id);
+    // }
 
-    @Tool(name = "donadores_modificar_estado", description = "Cambia el estado de un donador: VERIFICADO, SOSPECHOSO o BANEADO.")
-    public String modificarEstado(
-            @ToolParam(description = "ID del donador", required = true) String id,
-            @ToolParam(description = "VERIFICADO, SOSPECHOSO o BANEADO", required = true) String estado) {
-        return client.modificarEstado(id, estado.toUpperCase());
-    }
+    // @Tool(name = "donadores_modificar_estado", description = "Cambia el estado de un donador: VERIFICADO, SOSPECHOSO o BANEADO.")
+    // public String modificarEstado(
+    // @ToolParam(description = "ID del donador", required = true) String id,
+    // @ToolParam(description = "VERIFICADO, SOSPECHOSO o BANEADO", required = true) String estado) {
+    // return client.modificarEstado(id, estado.toUpperCase());
+    // }
 
-    @Tool(name = "donadores_modificar_categoria", description = "Cambia la categoría de un donador.")
-    public String modificarCategoria(
-            @ToolParam(description = "ID del donador", required = true) String id,
-            @ToolParam(description = "OCASIONAL, COLABORADOR, TRANSFORMADOR, SALVADOR o REVOLUCIONARIO", required = true) String categoria) {
-        return client.modificarCategoria(id, categoria.toUpperCase());
-    }
+    // @Tool(name = "donadores_modificar_categoria", description = "Cambia la categoría de un donador.")
+    // public String modificarCategoria(
+    // @ToolParam(description = "ID del donador", required = true) String id,
+    // @ToolParam(description = "OCASIONAL, COLABORADOR, TRANSFORMADOR, SALVADOR o REVOLUCIONARIO", required = true) String categoria) {
+    // return client.modificarCategoria(id, categoria.toUpperCase());
+    // }
 
-    @Tool(name = "donadores_puede_donar", description = "Indica si un donador puede donar según su estado.")
-    public String puedeDonar(@ToolParam(description = "ID del donador", required = true) String id) {
-        return client.puedeDonar(id);
-    }
+    // @Tool(name = "donadores_puede_donar", description = "Indica si un donador puede donar según su estado.")
+    // public String puedeDonar(@ToolParam(description = "ID del donador", required = true) String id) {
+    // return client.puedeDonar(id);
+    // }
 
     @Tool(name = "donadores_estadisticas", description = "Estadísticas de un donador: categoría, misión actual e insignias (datos del módulo Incentivos).")
     public String estadisticas(@ToolParam(description = "ID del donador", required = true) String id) {
         return client.estadisticas(id);
     }
 
-    @Tool(name = "donadores_registrar_queja", description = "Registra una queja contra un donador por una donación. Superar los umbrales de quejas puede cambiar su estado.")
-    public String registrarQueja(
-            @ToolParam(description = "ID del donador", required = true) String id,
-            @ToolParam(description = "ID de la donación que motiva la queja", required = true) String donacionID,
-            @ToolParam(description = "Motivo de la queja", required = true) String descripcion) {
-        return client.registrarQueja(id, donacionID, descripcion);
-    }
+    // @Tool(name = "donadores_registrar_queja", description = "Registra una queja contra un donador por una donación. Superar los umbrales de quejas puede cambiar su estado.")
+    // public String registrarQueja(
+    // @ToolParam(description = "ID del donador", required = true) String id,
+    // @ToolParam(description = "ID de la donación que motiva la queja", required = true) String donacionID,
+    // @ToolParam(description = "Motivo de la queja", required = true) String descripcion) {
+    // return client.registrarQueja(id, donacionID, descripcion);
+    // }
 
     @Tool(name = "donadores_listar_quejas", description = "Lista las quejas registradas contra un donador.")
     public String listarQuejas(@ToolParam(description = "ID del donador", required = true) String id) {
@@ -90,20 +90,20 @@ public class DonadoresTools {
         return client.listarEntidades();
     }
 
-    @Tool(name = "entidades_consultar_entidad", description = "Obtiene una entidad benéfica por su ID.")
-    public String consultarEntidad(@ToolParam(description = "ID de la entidad", required = true) String id) {
-        return client.consultarEntidad(id);
-    }
+    // @Tool(name = "entidades_consultar_entidad", description = "Obtiene una entidad benéfica por su ID.")
+    // public String consultarEntidad(@ToolParam(description = "ID de la entidad", required = true) String id) {
+    // return client.consultarEntidad(id);
+    // }
 
-    @Tool(name = "entidades_modificar_entidad", description = "Modifica datos de una entidad benéfica. Indicar al menos un campo; los omitidos no cambian.")
-    public String modificarEntidad(
-            @ToolParam(description = "ID de la entidad", required = true) String id,
-            @ToolParam(description = "Nueva razón social") String razonSocial,
-            @ToolParam(description = "Nuevo domicilio") String domicilio,
-            @ToolParam(description = "Nuevo teléfono") String telefono,
-            @ToolParam(description = "Nuevo correo") String correo) {
-        return client.modificarEntidad(id, razonSocial, domicilio, telefono, correo);
-    }
+    // @Tool(name = "entidades_modificar_entidad", description = "Modifica datos de una entidad benéfica. Indicar al menos un campo; los omitidos no cambian.")
+    // public String modificarEntidad(
+    // @ToolParam(description = "ID de la entidad", required = true) String id,
+    // @ToolParam(description = "Nueva razón social") String razonSocial,
+    // @ToolParam(description = "Nuevo domicilio") String domicilio,
+    // @ToolParam(description = "Nuevo teléfono") String telefono,
+    // @ToolParam(description = "Nuevo correo") String correo) {
+    // return client.modificarEntidad(id, razonSocial, domicilio, telefono, correo);
+    // }
 
     // ---------- Necesidades materiales ----------
 
@@ -119,10 +119,10 @@ public class DonadoresTools {
                 productoSolicitadoID, tipo.toUpperCase());
     }
 
-    @Tool(name = "necesidades_consultar_necesidad", description = "Obtiene una necesidad material por su ID.")
-    public String consultarNecesidad(@ToolParam(description = "ID de la necesidad", required = true) String id) {
-        return client.consultarNecesidad(id);
-    }
+    // @Tool(name = "necesidades_consultar_necesidad", description = "Obtiene una necesidad material por su ID.")
+    // public String consultarNecesidad(@ToolParam(description = "ID de la necesidad", required = true) String id) {
+    // return client.consultarNecesidad(id);
+    // }
 
     @Tool(name = "necesidades_listar_insatisfechas_por_producto", description = "Lista las necesidades aún insatisfechas de un producto.")
     public String listarInsatisfechasPorProducto(
@@ -130,25 +130,25 @@ public class DonadoresTools {
         return client.listarInsatisfechasPorProducto(productoID);
     }
 
-    @Tool(name = "necesidades_satisfacer_necesidad", description = "Reporta una entrega que satisface (total o parcialmente) una necesidad.")
-    public String satisfacerNecesidad(
-            @ToolParam(description = "ID de la necesidad", required = true) String id,
-            @ToolParam(description = "Cantidad entregada (mayor a 0)", required = true) Integer cantidad) {
-        return client.satisfacerNecesidad(id, cantidad);
-    }
+    // @Tool(name = "necesidades_satisfacer_necesidad", description = "Reporta una entrega que satisface (total o parcialmente) una necesidad.")
+    // public String satisfacerNecesidad(
+    // @ToolParam(description = "ID de la necesidad", required = true) String id,
+    // @ToolParam(description = "Cantidad entregada (mayor a 0)", required = true) Integer cantidad) {
+    // return client.satisfacerNecesidad(id, cantidad);
+    // }
 
-    @Tool(name = "necesidades_modificar_necesidad", description = "Modifica una necesidad material. Indicar al menos un campo; los omitidos no cambian.")
-    public String modificarNecesidad(
-            @ToolParam(description = "ID de la necesidad", required = true) String id,
-            @ToolParam(description = "Nuevo nivel de urgencia") Integer nivelDeUrgencia,
-            @ToolParam(description = "Nueva descripción") String descripcion,
-            @ToolParam(description = "Nueva cantidad objetivo") Integer cantidadObjetivo,
-            @ToolParam(description = "Nuevo ID de producto solicitado") String productoSolicitadoID) {
-        return client.modificarNecesidad(id, nivelDeUrgencia, descripcion, cantidadObjetivo, productoSolicitadoID);
-    }
+    // @Tool(name = "necesidades_modificar_necesidad", description = "Modifica una necesidad material. Indicar al menos un campo; los omitidos no cambian.")
+    // public String modificarNecesidad(
+    // @ToolParam(description = "ID de la necesidad", required = true) String id,
+    // @ToolParam(description = "Nuevo nivel de urgencia") Integer nivelDeUrgencia,
+    // @ToolParam(description = "Nueva descripción") String descripcion,
+    // @ToolParam(description = "Nueva cantidad objetivo") Integer cantidadObjetivo,
+    // @ToolParam(description = "Nuevo ID de producto solicitado") String productoSolicitadoID) {
+    // return client.modificarNecesidad(id, nivelDeUrgencia, descripcion, cantidadObjetivo, productoSolicitadoID);
+    // }
 
-    @Tool(name = "necesidades_eliminar_necesidad", description = "Elimina una necesidad material por su ID.")
-    public String eliminarNecesidad(@ToolParam(description = "ID de la necesidad", required = true) String id) {
-        return client.eliminarNecesidad(id);
-    }
+    // @Tool(name = "necesidades_eliminar_necesidad", description = "Elimina una necesidad material por su ID.")
+    // public String eliminarNecesidad(@ToolParam(description = "ID de la necesidad", required = true) String id) {
+    // return client.eliminarNecesidad(id);
+    // }
 }

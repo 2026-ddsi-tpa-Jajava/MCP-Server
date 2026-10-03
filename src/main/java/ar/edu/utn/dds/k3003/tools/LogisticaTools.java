@@ -15,7 +15,7 @@ public class LogisticaTools {
         this.logisticaClient = logisticaClient;
     }
 
-    @Tool(name = "crear_deposito", description = "Crea un nuevo depósito")
+    @Tool(name = "logistica_crear_deposito", description = "Crea un nuevo depósito")
 
     public String crearDeposito(
             @ToolParam(description = "Nombre del depósito", required = true) String nombre,
@@ -25,14 +25,14 @@ public class LogisticaTools {
         return logisticaClient.crearDeposito(nombre, direccion, capacidadMaxima);
     }
 
-    @Tool(name = "consultar_depositos", description = "Obtiene todos los depósitos registrados")
+    @Tool(name = "logistica_consultar_depositos", description = "Obtiene todos los depósitos registrados")
 
     public String consultarDepositos() {
 
         return logisticaClient.consultarDepositos();
     }
 
-    @Tool(name = "consultar_deposito", description = "Obtiene un depósito por ID")
+    @Tool(name = "logistica_consultar_deposito", description = "Obtiene un depósito por ID")
 
     public String consultarDeposito(@ToolParam(description = "ID del depósito", required = true) String depositoID) {
 
@@ -40,7 +40,7 @@ public class LogisticaTools {
 
     }
 
-    @Tool(name = "consultar_stock", description = "Obtiene el stock de un depósito"
+    @Tool(name = "logistica_consultar_stock", description = "Obtiene el stock de un depósito"
     )
     public String consultarStock(@ToolParam(description = "ID del depósito", required = true) String depositoID) {
 
@@ -48,21 +48,21 @@ public class LogisticaTools {
 
     }
 
-    @Tool(name = "consultar_stock_producto", description = "Obtiene la cantidad total disponible de un producto")
+    @Tool(name = "logistica_consultar_stock_producto", description = "Obtiene la cantidad total disponible de un producto")
 
     public String consultarStockProducto(@ToolParam(description = "ID del producto", required = true) String productoID) {
 
         return logisticaClient.consultarStockProducto(productoID);
     }
 
-    @Tool(name = "consultar_asignaciones", description = "Obtiene todas las asignaciones")
+    @Tool(name = "logistica_consultar_asignaciones", description = "Obtiene todas las asignaciones")
 
     public String consultarAsignaciones() {
 
         return logisticaClient.consultarAsignaciones();
     }
 
-    @Tool(name = "consultar_asignaciones_estado", description = "Obtiene las asignaciones por estado")
+    @Tool(name = "logistica_consultar_asignaciones_estado", description = "Obtiene las asignaciones por estado")
 
     public String consultarAsignacionesEstado(@ToolParam(description = "ASIGNADA o COMPLETADA", required = true) String estado) {
 
@@ -70,7 +70,7 @@ public class LogisticaTools {
 
     }
 
-    @Tool(name = "consultar_asignacion_paquete", description = "Obtiene una asignación a partir del ID del paquete")
+    @Tool(name = "logistica_consultar_asignacion_paquete", description = "Obtiene una asignación a partir del ID del paquete")
 
     public String consultarAsignacionPorPaquete(@ToolParam(description = "ID del paquete", required = true) String paqueteID) {
 
@@ -78,7 +78,7 @@ public class LogisticaTools {
 
     }
 
-    @Tool(name = "configurar_algoritmo", description = "Configura el algoritmo de matchmaking de un depósito")
+    @Tool(name = "logistica_configurar_algoritmo", description = "Configura el algoritmo de matchmaking de un depósito")
 
     public String configurarAlgoritmo(@ToolParam(description = "ID del depósito", required = true) String depositoID,
                                       @ToolParam(description = "SUB_ATENDIDOS o PRIORIDAD_POR_SCORE", required = true) String algoritmo) {
@@ -87,31 +87,31 @@ public class LogisticaTools {
 
     }
 
-    @Tool(name = "vaciar_stock", description = "Elimina todos los paquetes almacenados en un depósito")
+    // @Tool(name = "logistica_vaciar_stock", description = "Elimina todos los paquetes almacenados en un depósito")
 
-    public String vaciarStock(@ToolParam(description = "ID del depósito", required = true) String depositoID) {
+    // public String vaciarStock(@ToolParam(description = "ID del depósito", required = true) String depositoID) {
 
-        return logisticaClient.vaciarStock(depositoID);
-    }
+    // return logisticaClient.vaciarStock(depositoID);
+    // }
 
-    @Tool(name = "eliminar_paquetes", description = "Elimina todos los paquetes almacenados")
+    // @Tool(name = "logistica_eliminar_paquetes", description = "Elimina todos los paquetes almacenados")
 
-    public String eliminarPaquetes() {
+    // public String eliminarPaquetes() {
 
-        return logisticaClient.eliminarPaquetes();
-    }
+    // return logisticaClient.eliminarPaquetes();
+    // }
 
-    @Tool(name = "eliminar_asignaciones", description = "Elimina todas las asignaciones")
+    // @Tool(name = "logistica_eliminar_asignaciones", description = "Elimina todas las asignaciones")
 
-    public String eliminarAsignaciones() {
+    // public String eliminarAsignaciones() {
 
-        return logisticaClient.eliminarAsignaciones();
-    }
+    // return logisticaClient.eliminarAsignaciones();
+    // }
 
-    @Tool(name = "eliminar_depositos", description = "Elimina todos los depósitos")
+    // @Tool(name = "logistica_eliminar_depositos", description = "Elimina todos los depósitos")
 
-    public String eliminarDepositos() {
+    // public String eliminarDepositos() {
 
-        return logisticaClient.eliminarDepositos();
-    }
+    // return logisticaClient.eliminarDepositos();
+    // }
 }

@@ -26,23 +26,23 @@ public class IncentivosTools {
         return incentivosClient.listarInsignias();
     }
 
-    @Tool(name = "incentivos_consultar_insignia", description = "Busca una insignia por su ID (formato 'ins-X').")
-    public String consultarInsignia(@ToolParam(description = "ID de la insignia, ej: 'ins-1'") String insigniaID) {
-        return incentivosClient.consultarInsignia(insigniaID);
-    }
+    // @Tool(name = "incentivos_consultar_insignia", description = "Busca una insignia por su ID (formato 'ins-X').")
+    // public String consultarInsignia(@ToolParam(description = "ID de la insignia, ej: 'ins-1'") String insigniaID) {
+    //     return incentivosClient.consultarInsignia(insigniaID);
+    // }
 
-    @Tool(name = "incentivos_asignar_insignia_a_donador", description = "Asigna manualmente una insignia a un donador.")
-    public String asignarInsigniaADonador(
-            @ToolParam(description = "ID del donador, ej: 'd-1'") String donadorID,
-            @ToolParam(description = "ID de la insignia, ej: 'ins-1'") String insigniaID) {
-        incentivosClient.asignarInsigniaADonador(donadorID, insigniaID);
-        return "Insignia " + insigniaID + " asignada al donador " + donadorID;
-    }
+    // @Tool(name = "incentivos_asignar_insignia_a_donador", description = "Asigna manualmente una insignia a un donador.")
+    // public String asignarInsigniaADonador(
+    //         @ToolParam(description = "ID del donador, ej: 'd-1'") String donadorID,
+    //         @ToolParam(description = "ID de la insignia, ej: 'ins-1'") String insigniaID) {
+    //     incentivosClient.asignarInsigniaADonador(donadorID, insigniaID);
+    //     return "Insignia " + insigniaID + " asignada al donador " + donadorID;
+    // }
 
-    @Tool(name = "incentivos_consultar_insignias_donador", description = "Lista las insignias que ya tiene un donador.")
-    public String consultarInsigniasDeDonador(@ToolParam(description = "ID del donador, ej: 'd-1'") String donadorID) {
-        return incentivosClient.consultarInsigniasDeDonador(donadorID);
-    }
+    // @Tool(name = "incentivos_consultar_insignias_donador", description = "Lista las insignias que ya tiene un donador.")
+    // public String consultarInsigniasDeDonador(@ToolParam(description = "ID del donador, ej: 'd-1'") String donadorID) {
+    //     return incentivosClient.consultarInsigniasDeDonador(donadorID);
+    // }
 
     @Tool(name = "incentivos_crear_mision", description = "Crea una nueva misión en el sistema.")
     public String crearMision(
@@ -69,13 +69,13 @@ public class IncentivosTools {
         return incentivosClient.consultarMisionEnCurso(donadorID);
     }
 
-    @Tool(name = "incentivos_asignar_mision_a_donador", description = "Asigna una misión a un donador para que pase a estar en curso.")
-    public String asignarMisionADonador(
-            @ToolParam(description = "ID del donador, ej: 'd-1'") String donadorID,
-            @ToolParam(description = "ID de la misión, ej: 'mis-1'") String misionID) {
-        incentivosClient.asignarMisionADonador(donadorID, misionID);
-        return "Misión " + misionID + " asignada al donador " + donadorID;
-    }
+    // @Tool(name = "incentivos_asignar_mision_a_donador", description = "Asigna una misión a un donador para que pase a estar en curso.")
+    // public String asignarMisionADonador(
+    //         @ToolParam(description = "ID del donador, ej: 'd-1'") String donadorID,
+    //         @ToolParam(description = "ID de la misión, ej: 'mis-1'") String misionID) {
+    //     incentivosClient.asignarMisionADonador(donadorID, misionID);
+    //     return "Misión " + misionID + " asignada al donador " + donadorID;
+    // }
 
     @Tool(name = "incentivos_procesar_donador", description = "Fuerza el procesamiento de un donador: evalúa el progreso de su misión en curso.")
     public String procesarDonador(@ToolParam(description = "ID del donador, ej: 'd-1'") String donadorID) {
