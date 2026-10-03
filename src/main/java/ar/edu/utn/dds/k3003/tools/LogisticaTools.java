@@ -87,6 +87,23 @@ public class LogisticaTools {
 
     }
 
+    @Tool(name = "reportar_entrega", description = "Reporta la entrega de un paquete y completa la asignación asociada")
+    
+    public String reportarEntrega(
+
+            @ToolParam(description = "ID del paquete", required = true) String paqueteID,
+            @ToolParam(description = "ID de la donación", required = true) String donacionID,
+            @ToolParam(description = "ID del producto", required = true) String productoID,
+            @ToolParam(description = "Cantidad entregada", required = true) Integer cantidad) {
+
+        return logisticaClient.reportarEntrega(
+                paqueteID,
+                donacionID,
+                productoID,
+                cantidad
+        );
+    }
+
     @Tool(name = "vaciar_stock", description = "Elimina todos los paquetes almacenados en un depósito")
 
     public String vaciarStock(@ToolParam(description = "ID del depósito", required = true) String depositoID) {
@@ -114,4 +131,6 @@ public class LogisticaTools {
 
         return logisticaClient.eliminarDepositos();
     }
+
+
 }

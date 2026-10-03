@@ -241,6 +241,28 @@ public class LogisticaClient {
         );
     }
 
+    public String reportarEntrega(
+            String paqueteID,
+            String donacionID,
+            String productoID,
+            Integer cantidad) {
+
+        restClient.post()
+                .uri("/entregas")
+                .body(
+                        java.util.Map.of(
+                                "id", paqueteID,
+                                "donacionID", donacionID,
+                                "producto", productoID,
+                                "cantidad", cantidad
+                        )
+                )
+                .retrieve()
+                .toBodilessEntity();
+
+        return "Entrega reportada correctamente";
+    }
+
     public String configurarAlgoritmo(String depositoID, String algoritmo) {
 
         restClient.patch().uri("/depositos/{id}/algoritmo", depositoID).body(java.util.Map.of("algoritmo", algoritmo.toUpperCase())).retrieve().toBodilessEntity();
