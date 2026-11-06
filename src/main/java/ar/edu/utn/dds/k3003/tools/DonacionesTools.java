@@ -89,4 +89,45 @@ public class DonacionesTools {
             @ToolParam(description = "ID del identificador previamente creado", required = true) String identificadorId) {
         return donacionesClient.agregarProducto(nombre, descripcion, subcategoriaId, identificadorId);
     }
+
+    @Tool(name = "donaciones_modificar_producto", description = "Modifica los datos de un producto existente.")
+    public String modificarProducto(
+            @ToolParam(description = "ID del producto a modificar", required = true) String id,
+            @ToolParam(description = "Nuevo nombre", required = true) String nombre,
+            @ToolParam(description = "Nueva descripción", required = true) String descripcion,
+            @ToolParam(description = "ID de la subcategoría", required = true) String subcategoriaId,
+            @ToolParam(description = "ID del identificador", required = true) String identificadorId) {
+        return donacionesClient.modificarProducto(id, nombre, descripcion, subcategoriaId, identificadorId);
+    }
+
+    @Tool(name = "donaciones_eliminar_donacion", description = "Elimina físicamente una donación del sistema. PRECAUCIÓN: Úsalo solo si la donación fue un error de carga, ya que rompe la trazabilidad. REGLA ESTRICTA: SOLO debes usar esta herramienta si el usuario pide explícitamente 'borrar', 'eliminar' o 'dar de baja' una donación específica. NUNCA la uses por iniciativa propia.")
+    public String eliminarDonacion(
+            @ToolParam(description = "ID de la donación a eliminar", required = true) String id) {
+        return donacionesClient.eliminarDonacion(id);
+    }
+
+    @Tool(name = "donaciones_eliminar_identificador", description = "Elimina un identificador del sistema. REGLA ESTRICTA: SOLO debes usar esta herramienta si el usuario pide explícitamente 'borrar', 'eliminar' o 'dar de baja' un identificador específico. NUNCA la uses por iniciativa propia.")
+    public String eliminarIdentificador(
+            @ToolParam(description = "ID del identificador a eliminar", required = true) String id) {
+        return donacionesClient.eliminarIdentificador(id);
+    }
+
+    @Tool(name = "donaciones_eliminar_producto", description = "Elimina un producto del catálogo. REGLA ESTRICTA: SOLO debes usar esta herramienta si el usuario pide explícitamente 'borrar', 'eliminar' o 'dar de baja' un producto específico. NUNCA la uses por iniciativa propia.")
+    public String eliminarProducto(
+            @ToolParam(description = "ID del producto a eliminar", required = true) String id) {
+        return donacionesClient.eliminarProducto(id);
+    }
+
+    @Tool(name = "donaciones_eliminar_subcategoria", description = "Elimina una subcategoría. REGLA ESTRICTA: SOLO debes usar esta herramienta si el usuario pide explícitamente 'borrar', 'eliminar' o 'dar de baja' una subcategoria específica. NUNCA la uses por iniciativa propia.")
+    public String eliminarSubcategoria(
+            @ToolParam(description = "ID de la subcategoría a eliminar", required = true) String id) {
+        return donacionesClient.eliminarSubcategoria(id);
+    }
+
+    @Tool(name = "donaciones_eliminar_categoria",
+            description = "Elimina una categoría principal del catálogo. REGLA ESTRICTA: SOLO debes usar esta herramienta si el usuario pide explícitamente 'borrar' o 'eliminar' una categoría específica. NUNCA la uses por iniciativa propia.")
+    public String eliminarCategoria(
+            @ToolParam(description = "ID de la categoría a eliminar", required = true) String id) {
+        return donacionesClient.eliminarCategoria(id);
+    }
 }
