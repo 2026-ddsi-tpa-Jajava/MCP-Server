@@ -23,23 +23,63 @@ public class ConsultasClient {
                 .body(String.class));
     }
 
-    public String necesidadesUrgentes() {
+    public String necesidadesUrgentes(Integer urgenciaMinima, String tipo,
+                                      String categoriaId, String subcategoriaId) {
         return ejecutar(() -> restClient.get()
-                .uri("/necesidades-urgentes")
+                .uri(builder -> {
+                    builder.path("/necesidades-urgentes");
+                    if (urgenciaMinima != null) {
+                        builder.queryParam("urgenciaMinima", urgenciaMinima);
+                    }
+                    if (tipo != null && !tipo.isBlank()) {
+                        builder.queryParam("tipo", tipo);
+                    }
+                    if (categoriaId != null && !categoriaId.isBlank()) {
+                        builder.queryParam("categoriaId", categoriaId);
+                    }
+                    if (subcategoriaId != null && !subcategoriaId.isBlank()) {
+                        builder.queryParam("subcategoriaId", subcategoriaId);
+                    }
+                    return builder.build();
+                })
                 .retrieve()
                 .body(String.class));
     }
 
-    public String estadoDepositos() {
+    public String estadoDepositos(String depositoId, String fechaDesde, String fechaHasta) {
         return ejecutar(() -> restClient.get()
-                .uri("/depositos")
+                .uri(builder -> {
+                    builder.path("/depositos");
+                    if (depositoId != null && !depositoId.isBlank()) {
+                        builder.queryParam("depositoId", depositoId);
+                    }
+                    if (fechaDesde != null && !fechaDesde.isBlank()) {
+                        builder.queryParam("fechaDesde", fechaDesde);
+                    }
+                    if (fechaHasta != null && !fechaHasta.isBlank()) {
+                        builder.queryParam("fechaHasta", fechaHasta);
+                    }
+                    return builder.build();
+                })
                 .retrieve()
                 .body(String.class));
     }
 
-    public String calidadDonaciones() {
+    public String calidadDonaciones(String categoriaId, String subcategoriaId, Integer limite) {
         return ejecutar(() -> restClient.get()
-                .uri("/calidad")
+                .uri(builder -> {
+                    builder.path("/calidad");
+                    if (categoriaId != null && !categoriaId.isBlank()) {
+                        builder.queryParam("categoriaId", categoriaId);
+                    }
+                    if (subcategoriaId != null && !subcategoriaId.isBlank()) {
+                        builder.queryParam("subcategoriaId", subcategoriaId);
+                    }
+                    if (limite != null) {
+                        builder.queryParam("limite", limite);
+                    }
+                    return builder.build();
+                })
                 .retrieve()
                 .body(String.class));
     }

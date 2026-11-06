@@ -103,32 +103,23 @@ public class LogisticaTools {
                 cantidad
         );
     }
-/*
-    @Tool(name = "vaciar_stock", description = "Elimina todos los paquetes almacenados en un depósito")
-*/
-    // public String vaciarStock(@ToolParam(description = "ID del depósito", required = true) String depositoID) {
+    @Tool(name = "logistica_vaciar_stock", description = "Elimina todos los paquetes almacenados en un depósito.")
+    public String vaciarStock(@ToolParam(description = "ID del depósito", required = true) String depositoID) {
+        return logisticaClient.vaciarStock(depositoID);
+    }
 
-    // return logisticaClient.vaciarStock(depositoID);
-    // }
+    @Tool(name = "logistica_eliminar_paquetes", description = "Elimina todos los paquetes almacenados.")
+    public String eliminarPaquetes() {
+        return logisticaClient.eliminarPaquetes();
+    }
 
-    // @Tool(name = "logistica_eliminar_paquetes", description = "Elimina todos los paquetes almacenados")
+    @Tool(name = "logistica_eliminar_asignaciones", description = "Elimina todas las asignaciones.")
+    public String eliminarAsignaciones() {
+        return logisticaClient.eliminarAsignaciones();
+    }
 
-    // public String eliminarPaquetes() {
-
-    // return logisticaClient.eliminarPaquetes();
-    // }
-
-    // @Tool(name = "logistica_eliminar_asignaciones", description = "Elimina todas las asignaciones")
-
-    // public String eliminarAsignaciones() {
-
-    // return logisticaClient.eliminarAsignaciones();
-    // }
-
-    // @Tool(name = "logistica_eliminar_depositos", description = "Elimina todos los depósitos")
-
-    // public String eliminarDepositos() {
-
-    // return logisticaClient.eliminarDepositos();
-    // }
+    @Tool(name = "logistica_eliminar_depositos", description = "Elimina todos los depósitos.")
+    public String eliminarDepositos() {
+        return logisticaClient.eliminarDepositos();
+    }
 }

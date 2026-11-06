@@ -23,19 +23,29 @@ public class ConsultasTools {
 
     @Tool(name = "consulta_necesidades_urgentes",
             description = "Obtiene las necesidades urgentes sin cubrir desde el modelo de lectura CQRS.")
-    public String necesidadesUrgentes() {
-        return consultasClient.necesidadesUrgentes();
+    public String necesidadesUrgentes(
+            @ToolParam(description = "Urgencia mínima, entre 1 y 10") Integer urgenciaMinima,
+            @ToolParam(description = "Tipo de necesidad, por ejemplo EXTRAORDINARIA o RECURRENTE") String tipo,
+            @ToolParam(description = "ID de categoría del producto") String categoriaId,
+            @ToolParam(description = "ID de subcategoría del producto") String subcategoriaId) {
+        return consultasClient.necesidadesUrgentes(urgenciaMinima, tipo, categoriaId, subcategoriaId);
     }
 
     @Tool(name = "consulta_estado_depositos",
             description = "Obtiene el estado consolidado de los depósitos desde el modelo de lectura CQRS.")
-    public String estadoDepositos() {
-        return consultasClient.estadoDepositos();
+    public String estadoDepositos(
+            @ToolParam(description = "ID del depósito; si se omite, devuelve todos") String depositoId,
+            @ToolParam(description = "Fecha inicial en formato YYYY-MM-DD") String fechaDesde,
+            @ToolParam(description = "Fecha final en formato YYYY-MM-DD") String fechaHasta) {
+        return consultasClient.estadoDepositos(depositoId, fechaDesde, fechaHasta);
     }
 
     @Tool(name = "consulta_calidad_donaciones",
             description = "Obtiene las métricas de calidad de las donaciones desde el modelo de lectura CQRS.")
-    public String calidadDonaciones() {
-        return consultasClient.calidadDonaciones();
+    public String calidadDonaciones(
+            @ToolParam(description = "ID de categoría del producto") String categoriaId,
+            @ToolParam(description = "ID de subcategoría del producto") String subcategoriaId,
+            @ToolParam(description = "Cantidad máxima de donadores a devolver") Integer limite) {
+        return consultasClient.calidadDonaciones(categoriaId, subcategoriaId, limite);
     }
 }

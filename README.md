@@ -73,9 +73,9 @@ Cuando el servicio de consultas está disponible, el MCP también expone:
 | Tool | Descripción |
 |---|---|
 | `consulta_ficha_integral_donador` | Ficha consolidada de un donador desde el modelo de lectura |
-| `consulta_necesidades_urgentes` | Necesidades urgentes sin cubrir |
-| `consulta_estado_depositos` | Estado consolidado de los depósitos |
-| `consulta_calidad_donaciones` | Métricas de calidad de las donaciones |
+| `consulta_necesidades_urgentes` | Necesidades urgentes sin cubrir, con filtros opcionales de urgencia, tipo, categoría y subcategoría |
+| `consulta_estado_depositos` | Estado consolidado de todos los depósitos o de uno, con rango de fechas opcional |
+| `consulta_calidad_donaciones` | Métricas de calidad por categoría/subcategoría y ranking opcional de donadores |
 
 ## Tools
 
@@ -85,12 +85,23 @@ Cuando el servicio de consultas está disponible, el MCP también expone:
 |---|---|
 | `donadores_crear_donador` | Da de alta un donador. Queda en estado VERIFICADO y categoría OCASIONAL. |
 | `donadores_listar_donadores` | Lista todos los donadores. |
+| `donadores_consultar_donador` | Obtiene un donador por ID. |
+| `donadores_modificar_estado` | Cambia el estado del donador. |
+| `donadores_modificar_categoria` | Cambia la categoría del donador. |
+| `donadores_puede_donar` | Verifica si el donador puede realizar una donación. |
 | `donadores_estadisticas` | Estadísticas de un donador: categoría, misión actual e insignias. |
+| `donadores_registrar_queja` | Registra una queja contra un donador asociada a una donación. |
 | `donadores_listar_quejas` | Lista las quejas registradas contra un donador. |
 | `entidades_crear_entidad` | Da de alta una entidad benéfica. |
 | `entidades_listar_entidades` | Lista todas las entidades benéficas. |
+| `entidades_consultar_entidad` | Obtiene una entidad por ID. |
+| `entidades_modificar_entidad` | Modifica los datos de una entidad. |
 | `necesidades_registrar_necesidad` | Registra una necesidad material de una entidad. Valida el producto en Donaciones y asigna stock en Logística. |
+| `necesidades_consultar_necesidad` | Obtiene una necesidad material por su ID. |
 | `necesidades_listar_insatisfechas_por_producto` | Lista las necesidades aún insatisfechas de un producto. |
+| `necesidades_satisfacer_necesidad` | Registra una satisfacción total o parcial de una necesidad. |
+| `necesidades_modificar_necesidad` | Modifica los datos de una necesidad. |
+| `necesidades_eliminar_necesidad` | Elimina una necesidad material. |
 
 ### Donaciones
 
@@ -114,10 +125,14 @@ Cuando el servicio de consultas está disponible, el MCP también expone:
 |---|---|
 | `incentivos_crear_insignia` | Crea una nueva insignia. |
 | `incentivos_listar_insignias` | Lista todas las insignias existentes. |
+| `incentivos_consultar_insignia` | Busca una insignia por ID. |
+| `incentivos_asignar_insignia_a_donador` | Asigna manualmente una insignia a un donador. |
+| `incentivos_consultar_insignias_donador` | Lista las insignias de un donador. |
 | `incentivos_crear_mision` | Crea una nueva misión. |
 | `incentivos_listar_misiones` | Lista todas las misiones existentes. |
 | `incentivos_consultar_mision` | Busca una misión por su ID (formato `mis-X`). |
 | `incentivos_consultar_mision_en_curso` | Consulta la misión en curso de un donador. |
+| `incentivos_asignar_mision_a_donador` | Asigna una misión a un donador. |
 | `incentivos_procesar_donador` | Fuerza el procesamiento de un donador: evalúa el progreso de su misión en curso. |
 | `incentivos_consultar_estado_donador` | Devuelve el estado completo de un donador: categoría, insignias, misión actual e historial de categorías. |
 
@@ -135,3 +150,7 @@ Cuando el servicio de consultas está disponible, el MCP también expone:
 | `logistica_consultar_asignacion_paquete` | Obtiene una asignación a partir del ID del paquete. |
 | `logistica_configurar_algoritmo` | Configura el algoritmo de matchmaking de un depósito (SUB_ATENDIDOS o PRIORIDAD_POR_SCORE). |
 | `logistica_reportar_entrega` | Cambia el estado de la asignacion a COMPLETADA. |
+| `logistica_vaciar_stock` | Elimina los paquetes almacenados en un depósito. |
+| `logistica_eliminar_paquetes` | Elimina todos los paquetes almacenados. |
+| `logistica_eliminar_asignaciones` | Elimina todas las asignaciones. |
+| `logistica_eliminar_depositos` | Elimina todos los depósitos. |
