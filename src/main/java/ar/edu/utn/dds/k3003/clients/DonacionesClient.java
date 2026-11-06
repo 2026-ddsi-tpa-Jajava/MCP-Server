@@ -109,4 +109,42 @@ public class DonacionesClient {
                 .retrieve()
                 .body(String.class);
     }
+
+    public String modificarProducto(String id, String nombre, String descripcion, String subcategoriaId, String identificadorId) {
+        java.util.Map<String, String> body = java.util.Map.of(
+                "nombre", nombre,
+                "descripcion", descripcion != null ? descripcion : "",
+                "subcategoriaID", subcategoriaId,
+                "identificadorID", identificadorId
+        );
+        return restClient.put().uri("/productos/{id}", id)
+                .body(body)
+                .retrieve()
+                .body(String.class);
+    }
+
+    public String eliminarDonacion(String id) {
+        restClient.delete().uri("/donaciones/{id}", id).retrieve().toBodilessEntity();
+        return "Donación " + id + " eliminada correctamente.";
+    }
+
+    public String eliminarIdentificador(String id) {
+        restClient.delete().uri("/identificadores/{id}", id).retrieve().toBodilessEntity();
+        return "Identificador " + id + " eliminado correctamente.";
+    }
+
+    public String eliminarProducto(String id) {
+        restClient.delete().uri("/productos/{id}", id).retrieve().toBodilessEntity();
+        return "Producto " + id + " eliminado correctamente.";
+    }
+
+    public String eliminarSubcategoria(String id) {
+        restClient.delete().uri("/categorias/{id}/subcategorias", id).retrieve().toBodilessEntity();
+        return "Subcategoría " + id + " eliminada correctamente.";
+    }
+
+    public String eliminarCategoria(String id) {
+        restClient.delete().uri("/categorias/{id}", id).retrieve().toBodilessEntity();
+        return "Categoría " + id + " eliminada correctamente.";
+    }
 }
