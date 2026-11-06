@@ -11,7 +11,7 @@ public class LogisticaClient {
     private final RestClient restClient;
 
     public LogisticaClient(
-            @Value("${logistica.url:https://logistica-hjaw.onrender.com}")
+            @Value("${servicios.url.logistica:https://jajava-gateway-main-15d96d2.zuplo.app/logistica}")
             String baseUrl) {
 
         this.restClient = RestClient.create(baseUrl);

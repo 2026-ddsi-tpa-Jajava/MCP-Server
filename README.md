@@ -4,13 +4,65 @@ Servidor MCP (Spring AI) de Donatrack. Expone por SSE (`/mcp/sse`) las tools que
 
 ## Configuración
 
+El MCP debe consumir el sistema a través del API Gateway, no directamente a cada microservicio. El gateway expone una única URL y enruta cada recurso por prefijo de módulo.
+
 | Variable | Default | Descripción |
 |---|---|---|
 | `PORT` | `8090` | Puerto del servidor |
-| `URL_DONADORES` | `https://agusb1101-donadores-entidades.onrender.com` | Módulo Donadores y Entidades |
-| `URL_DONACIONES` | `https://donaciones-5u8i.onrender.com` | Módulo Donaciones |
-| `URL_INCENTIVOS` | `https://incentivos-yuse.onrender.com` | Módulo Incentivos |
-| `URL_LOGISTICA` | `https://logistica-hjaw.onrender.com` | Módulo Logística |
+| `URL_GATEWAY` | `https://jajava-gateway-main-15d96d2.zuplo.app` | URL base del API Gateway de Zuplo |
+| `URL_DONADORES` | `${URL_GATEWAY}/donadores-entidades` | Módulo Donadores y Entidades a través del gateway |
+| `URL_DONACIONES` | `${URL_GATEWAY}/donaciones` | Módulo Donaciones a través del gateway |
+| `URL_INCENTIVOS` | `${URL_GATEWAY}/incentivos` | Módulo Incentivos a través del gateway |
+| `URL_LOGISTICA` | `${URL_GATEWAY}/logistica` | Módulo Logística a través del gateway |
+
+Ejemplo de rutas esperadas en el gateway:
+
+- `https://jajava-gateway-main-15d96d2.zuplo.app/donadores-entidades/donadores`
+- `https://jajava-gateway-main-15d96d2.zuplo.app/incentivos/insignias`
+- `https://jajava-gateway-main-15d96d2.zuplo.app/donaciones/donaciones`
+- `https://jajava-gateway-main-15d96d2.zuplo.app/logistica/asignaciones`
+
+## Arquitectura de integración
+
+El MCP no implementa reglas de negocio; delega la operación en los módulos de Donatrack a través del API Gateway.
+
+El flujo recomendado para esta entrega es:
+
+1. El cliente (Claude Desktop / MCP / bot) llama al servidor MCP local.
+2. El servidor MCP invoca las tools definidas en Java.
+3. Cada tool usa `RestClient` para enviar la request al gateway.
+4. El gateway enruta la solicitud al módulo correspondiente.
+5. El módulo ejecuta la lógica de negocio y devuelve la respuesta.
+
+Esto mantiene una sola entrada de red para los clientes y evita que el MCP conozca o dependa directamente de cuatro URLs distintas.
+
+## Alcance de tools del MCP
+
+El MCP expone herramientas para operar el flujo principal del sistema. La intención es permitir que un modelo de lenguaje pueda completar casos de uso reales de Donatrack sin conocer la infraestructura técnica.
+
+Las tools cubren, entre otras cosas:
+
+- alta y listado de donadores y entidades
+- registro de necesidades materiales
+- catálogo de productos, categorías y subcategorías
+- registro de donaciones y quejas
+- creación de insignias y misiones
+- consulta de misión en curso y estado del donador
+- consulta de depósitos, stock y asignaciones
+- registro de entrega y cierre de asignación
+
+El MCP está pensada como capa de orquestación operacional; no reemplaza el backend ni el modelo de lectura/cqrs del servicio de consultas.
+
+## Nota sobre el alcance completo del sistema
+
+Para la entrega de API Gateway y consultas cruzadas, el MCP debería complementar el sistema con herramientas adicionales de lectura agregada cuando el proyecto integre el servicio de consultas y MongoDB. Es decir, no basta con exponer CRUD de módulos; también conviene incluir herramientas de consulta centralizada, por ejemplo:
+
+- ficha integral de donador
+- necesidades urgentes sin cubrir
+- resumen operativo por depósito
+- detalle consolidado de donaciones por entidad
+
+Estas consultas no son reglas de negocio nuevas, sino vistas agregadas sobre el modelo de lectura.
 
 ## Tools
 
