@@ -41,7 +41,7 @@ public class ConsultasTools {
     }
 
     @Tool(name = "consulta_calidad_donaciones",
-            description = "Obtiene, por categoría y subcategoría, el total de donaciones, cuántas tienen queja y su proporción, desde el modelo de lectura CQRS.")
+            description = "Obtiene, por categoría y subcategoría, el total de donaciones, cuántas tienen queja y su proporción, y el ranking de donadores con más quejas con su estado y categoría, desde el modelo de lectura CQRS.")
     public String calidadDonaciones() {
         return consultasClient.calidadDonaciones();
     }
