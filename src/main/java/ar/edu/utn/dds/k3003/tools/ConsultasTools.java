@@ -26,26 +26,23 @@ public class ConsultasTools {
     public String necesidadesUrgentes(
             @ToolParam(description = "Urgencia mínima, entre 1 y 10") Integer urgenciaMinima,
             @ToolParam(description = "Tipo de necesidad, por ejemplo EXTRAORDINARIA o RECURRENTE") String tipo,
-            @ToolParam(description = "ID de categoría del producto") String categoriaId,
-            @ToolParam(description = "ID de subcategoría del producto") String subcategoriaId) {
-        return consultasClient.necesidadesUrgentes(urgenciaMinima, tipo, categoriaId, subcategoriaId);
+            @ToolParam(description = "Categoría del producto, por ejemplo ALIMENTOS") String categoria,
+            @ToolParam(description = "ID de subcategoría o de producto solicitado") String subcategoriaId) {
+        return consultasClient.necesidadesUrgentes(urgenciaMinima, tipo, categoria, subcategoriaId);
     }
 
     @Tool(name = "consulta_estado_depositos",
             description = "Obtiene el estado consolidado de los depósitos desde el modelo de lectura CQRS.")
     public String estadoDepositos(
             @ToolParam(description = "ID del depósito; si se omite, devuelve todos") String depositoId,
-            @ToolParam(description = "Fecha inicial en formato YYYY-MM-DD") String fechaDesde,
-            @ToolParam(description = "Fecha final en formato YYYY-MM-DD") String fechaHasta) {
+            @ToolParam(description = "Fecha inicial, YYYY-MM-DD o YYYY-MM-DDTHH:mm:ss") String fechaDesde,
+            @ToolParam(description = "Fecha final, YYYY-MM-DD o YYYY-MM-DDTHH:mm:ss") String fechaHasta) {
         return consultasClient.estadoDepositos(depositoId, fechaDesde, fechaHasta);
     }
 
     @Tool(name = "consulta_calidad_donaciones",
-            description = "Obtiene las métricas de calidad de las donaciones desde el modelo de lectura CQRS.")
-    public String calidadDonaciones(
-            @ToolParam(description = "ID de categoría del producto") String categoriaId,
-            @ToolParam(description = "ID de subcategoría del producto") String subcategoriaId,
-            @ToolParam(description = "Cantidad máxima de donadores a devolver") Integer limite) {
-        return consultasClient.calidadDonaciones(categoriaId, subcategoriaId, limite);
+            description = "Obtiene, por categoría y subcategoría, el total de donaciones, cuántas tienen queja y su proporción, desde el modelo de lectura CQRS.")
+    public String calidadDonaciones() {
+        return consultasClient.calidadDonaciones();
     }
 }

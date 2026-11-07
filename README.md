@@ -14,7 +14,7 @@ El MCP debe consumir el sistema a través del API Gateway, no directamente a cad
 | `URL_DONACIONES` | `${URL_GATEWAY}/donaciones` | Módulo Donaciones a través del gateway |
 | `URL_INCENTIVOS` | `${URL_GATEWAY}/incentivos` | Módulo Incentivos a través del gateway |
 | `URL_LOGISTICA` | `${URL_GATEWAY}/logistica` | Módulo Logística a través del gateway |
-| `URL_CONSULTAS` | `${URL_GATEWAY}/consultas` | Servicio de Consultas/CQRS a través del gateway |
+| `URL_CONSULTAS` | `${URL_GATEWAY}/consultas/consultas` | Servicio de Consultas/CQRS a través del gateway |
 
 Ejemplo de rutas esperadas en el gateway:
 
@@ -22,7 +22,7 @@ Ejemplo de rutas esperadas en el gateway:
 - `https://jajava-gateway-main-15d96d2.zuplo.app/incentivos/insignias`
 - `https://jajava-gateway-main-15d96d2.zuplo.app/donaciones/donaciones`
 - `https://jajava-gateway-main-15d96d2.zuplo.app/logistica/asignaciones`
-- `https://jajava-gateway-main-15d96d2.zuplo.app/consultas/donadores/{id}`
+- `https://jajava-gateway-main-15d96d2.zuplo.app/consultas/consultas/donadores/{id}`
 
 ## Arquitectura de integración
 
@@ -75,7 +75,7 @@ Cuando el servicio de consultas está disponible, el MCP también expone:
 | `consulta_ficha_integral_donador` | Ficha consolidada de un donador desde el modelo de lectura |
 | `consulta_necesidades_urgentes` | Necesidades urgentes sin cubrir, con filtros opcionales de urgencia, tipo, categoría y subcategoría |
 | `consulta_estado_depositos` | Estado consolidado de todos los depósitos o de uno, con rango de fechas opcional |
-| `consulta_calidad_donaciones` | Métricas de calidad por categoría/subcategoría y ranking opcional de donadores |
+| `consulta_calidad_donaciones` | Total de donaciones, donaciones con queja y proporción por categoría/subcategoría |
 
 ## Tools
 

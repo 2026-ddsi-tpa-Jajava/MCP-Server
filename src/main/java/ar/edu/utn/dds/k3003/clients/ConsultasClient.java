@@ -24,7 +24,7 @@ public class ConsultasClient {
     }
 
     public String necesidadesUrgentes(Integer urgenciaMinima, String tipo,
-                                      String categoriaId, String subcategoriaId) {
+                                      String categoria, String subcategoriaId) {
         return ejecutar(() -> restClient.get()
                 .uri(builder -> {
                     builder.path("/necesidades-urgentes");
@@ -34,8 +34,8 @@ public class ConsultasClient {
                     if (tipo != null && !tipo.isBlank()) {
                         builder.queryParam("tipo", tipo);
                     }
-                    if (categoriaId != null && !categoriaId.isBlank()) {
-                        builder.queryParam("categoriaId", categoriaId);
+                    if (categoria != null && !categoria.isBlank()) {
+                        builder.queryParam("categoria", categoria);
                     }
                     if (subcategoriaId != null && !subcategoriaId.isBlank()) {
                         builder.queryParam("subcategoriaId", subcategoriaId);
@@ -51,13 +51,13 @@ public class ConsultasClient {
                 .uri(builder -> {
                     builder.path("/depositos");
                     if (depositoId != null && !depositoId.isBlank()) {
-                        builder.queryParam("depositoId", depositoId);
+                        builder.queryParam("id", depositoId);
                     }
                     if (fechaDesde != null && !fechaDesde.isBlank()) {
-                        builder.queryParam("fechaDesde", fechaDesde);
+                        builder.queryParam("desde", aFechaHora(fechaDesde, "T00:00:00"));
                     }
                     if (fechaHasta != null && !fechaHasta.isBlank()) {
-                        builder.queryParam("fechaHasta", fechaHasta);
+                        builder.queryParam("hasta", aFechaHora(fechaHasta, "T23:59:59"));
                     }
                     return builder.build();
                 })
@@ -65,23 +65,17 @@ public class ConsultasClient {
                 .body(String.class));
     }
 
-    public String calidadDonaciones(String categoriaId, String subcategoriaId, Integer limite) {
+    public String calidadDonaciones() {
         return ejecutar(() -> restClient.get()
-                .uri(builder -> {
-                    builder.path("/calidad");
-                    if (categoriaId != null && !categoriaId.isBlank()) {
-                        builder.queryParam("categoriaId", categoriaId);
-                    }
-                    if (subcategoriaId != null && !subcategoriaId.isBlank()) {
-                        builder.queryParam("subcategoriaId", subcategoriaId);
-                    }
-                    if (limite != null) {
-                        builder.queryParam("limite", limite);
-                    }
-                    return builder.build();
-                })
+                .uri("/calidad")
                 .retrieve()
                 .body(String.class));
+    }
+
+    // El servicio de consultas espera fecha y hora ISO; si llega solo la fecha, se completa la hora.
+    private static String aFechaHora(String fecha, String horaPorDefecto) {
+        String valor = fecha.trim();
+        return valor.length() == 10 ? valor + horaPorDefecto : valor;
     }
 
     private static String ejecutar(Supplier<String> llamada) {
